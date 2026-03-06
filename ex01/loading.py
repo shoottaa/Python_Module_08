@@ -1,14 +1,9 @@
-"""
-Exercise 01 - Loading Programs
-"""
-
 import sys
 import importlib.metadata
 from typing import Optional
 
 
 def get_version(package: str) -> Optional[str]:
-    """Return installed version of a package or None."""
     try:
         return importlib.metadata.version(package)
     except Exception:
@@ -16,7 +11,6 @@ def get_version(package: str) -> Optional[str]:
 
 
 def check_dependencies() -> bool:
-    """Check required packages and print their status."""
     packages = {
         "pandas": "Data manipulation ready",
         "requests": "Network access ready",
@@ -31,15 +25,14 @@ def check_dependencies() -> bool:
             print(f"[OK] {pkg} ({version}) - {description}")
         else:
             print(f"[MISSING] {pkg} - not installed")
-            print("  Install with: pip install -r requirements.txt")
-            print("  Or with:      poetry install")
+            print("Install with: pip install -r requirements.txt")
+            print("Or with: poetry install")
             all_ok = False
 
     return all_ok
 
 
 def analyze_data():
-    """Generate 1000 Matrix data points."""
     import numpy as np  # type: ignore
     import pandas as pd  # type: ignore
 
@@ -53,7 +46,6 @@ def analyze_data():
 
 
 def create_chart(df) -> None:
-    """Save a simple visualization."""
     import matplotlib  # type: ignore
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt  # type: ignore
@@ -66,7 +58,6 @@ def create_chart(df) -> None:
 
 
 def main() -> None:
-    """Main program."""
     print("LOADING STATUS: Loading programs...\n")
 
     if not check_dependencies():

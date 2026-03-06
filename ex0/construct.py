@@ -10,12 +10,17 @@ if __name__ == "__main__":
             print(f"Environment Path: {sys.prefix}\n")
 
             print("SUCCESS: You're in an isolated environment!")
-            print("Safe to install packages without affecting the gobal system.\n")
+            print(
+                "Safe to install packages without "
+                "affecting the gobal system.\n"
+            )
             print("Package installation path:")
             prefix = sys.prefix
             version_maj = sys.version_info.major
             version_min = sys.version_info.minor
-            print(f"{prefix}/lib/python{version_maj}.{version_min}/site-packages")
+            print(
+                f"{prefix}/lib/python{version_maj}.{version_min}/site-packages"
+            )
         else:
             print("MATRIX STATUS: You're still plugged in\n")
             print(f"Current Python: {sys.version}")
