@@ -1,7 +1,6 @@
 import sys
 import importlib.metadata
 from typing import Optional
-import os
 
 
 def get_version(package: str) -> Optional[str]:
@@ -12,9 +11,10 @@ def get_version(package: str) -> Optional[str]:
 
 
 def detect_installer() -> str:
-    if os.path.exists("poetry.lock"):
-        return "poetry"
-    else:
+    try:
+        with open("poetry.lock"):
+            return "poetry"
+    except FileNotFoundError:
         return "pip"
 
 
