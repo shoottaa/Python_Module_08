@@ -1,6 +1,7 @@
 import sys
 import importlib.metadata
 from typing import Optional
+import os
 
 
 def get_version(package: str) -> Optional[str]:
@@ -10,6 +11,13 @@ def get_version(package: str) -> Optional[str]:
         return None
 
 
+def detect_installer() -> str:
+    if os.path.exists("poetry.lock"):
+        return "poetry"
+    else:
+        return "pip"
+
+
 def check_dependencies() -> bool:
     packages = {
         "pandas": "Data manipulation ready",
@@ -17,8 +25,8 @@ def check_dependencies() -> bool:
         "matplotlib": "Visualization ready",
     }
     all_ok = True
-
-    print("Checking dependencies:")
+    installer = detect_installer()
+    print(f"Checking dependencies: (Installer: {installer})")
     for pkg, description in packages.items():
         version = get_version(pkg)
         if version:
